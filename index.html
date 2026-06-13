@@ -1,0 +1,516 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Wei | Software Engineer</title>
+  <meta name="description" content="Wei 的軟體工程師個人單頁網站，展示專業背景、技能與聯絡方式。">
+  <style>
+    :root {
+      --bg: #f7f8fb;
+      --ink: #19202a;
+      --muted: #5c6675;
+      --line: #d9dee8;
+      --panel: #ffffff;
+      --accent: #1f6feb;
+      --accent-dark: #174ea6;
+      --code: #27364a;
+      --soft: #eef3fb;
+      --green: #25745a;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--bg);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .shell {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 2;
+      border-bottom: 1px solid rgba(217, 222, 232, 0.75);
+      background: rgba(247, 248, 251, 0.9);
+      backdrop-filter: blur(14px);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 68px;
+      gap: 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 750;
+      letter-spacing: 0;
+    }
+
+    .mark {
+      display: grid;
+      place-items: center;
+      width: 38px;
+      height: 38px;
+      border-radius: 8px;
+      color: #fff;
+      background: var(--ink);
+      font-size: 14px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .nav-links a:hover {
+      color: var(--ink);
+    }
+
+    main {
+      padding-bottom: 64px;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.9fr);
+      gap: 48px;
+      align-items: center;
+      min-height: calc(100vh - 68px);
+      padding: 64px 0 72px;
+    }
+
+    .eyebrow {
+      margin: 0 0 16px;
+      color: var(--green);
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0;
+      max-width: 760px;
+      font-size: clamp(44px, 7vw, 82px);
+      line-height: 0.98;
+      letter-spacing: 0;
+    }
+
+    .lead {
+      max-width: 660px;
+      margin: 24px 0 0;
+      color: var(--muted);
+      font-size: clamp(18px, 2vw, 21px);
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 32px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 0 18px;
+      border-radius: 8px;
+      border: 1px solid var(--line);
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    .button.primary {
+      color: #fff;
+      border-color: var(--accent);
+      background: var(--accent);
+    }
+
+    .button.primary:hover {
+      background: var(--accent-dark);
+    }
+
+    .button:hover {
+      border-color: #b8c1d1;
+      background: #fff;
+    }
+
+    .profile-panel {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      box-shadow: 0 24px 70px rgba(25, 32, 42, 0.08);
+      overflow: hidden;
+    }
+
+    .terminal-top {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--line);
+      background: #fbfcfe;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #e95f55;
+    }
+
+    .dot:nth-child(2) {
+      background: #e8bd4b;
+    }
+
+    .dot:nth-child(3) {
+      background: #46b170;
+    }
+
+    .terminal {
+      padding: 24px;
+      color: #dbe7ff;
+      background: var(--code);
+      font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+      font-size: 14px;
+      min-height: 360px;
+    }
+
+    .terminal p {
+      margin: 0 0 12px;
+    }
+
+    .prompt {
+      color: #76e4a5;
+    }
+
+    .comment {
+      color: #9bb0cc;
+    }
+
+    .section {
+      padding: 72px 0 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 24px;
+      margin-bottom: 28px;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: clamp(28px, 4vw, 42px);
+      line-height: 1.1;
+      letter-spacing: 0;
+    }
+
+    .section-head p {
+      max-width: 520px;
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .card {
+      min-height: 190px;
+      padding: 22px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+    }
+
+    .card h3 {
+      margin: 0 0 10px;
+      font-size: 18px;
+      letter-spacing: 0;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .tag {
+      padding: 6px 10px;
+      border-radius: 8px;
+      color: #2e3b4e;
+      background: var(--soft);
+      font-size: 13px;
+      font-weight: 650;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 12px;
+    }
+
+    .row {
+      display: grid;
+      grid-template-columns: 160px minmax(0, 1fr);
+      gap: 24px;
+      padding: 20px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .row:first-child {
+      border-top: 0;
+    }
+
+    .row time {
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .row h3 {
+      margin: 0 0 6px;
+      font-size: 19px;
+    }
+
+    .row p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .contact {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 24px;
+      align-items: center;
+      padding: 32px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--ink);
+      color: #fff;
+    }
+
+    .contact p {
+      margin: 10px 0 0;
+      color: #c6d0df;
+    }
+
+    .contact .button {
+      color: #fff;
+      border-color: rgba(255, 255, 255, 0.28);
+    }
+
+    footer {
+      padding: 32px 0 48px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    @media (max-width: 860px) {
+      .nav {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 14px 0;
+      }
+
+      .nav-links {
+        width: 100%;
+        justify-content: space-between;
+      }
+
+      .hero,
+      .grid,
+      .contact {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        min-height: auto;
+        padding-top: 48px;
+      }
+
+      .section-head,
+      .row {
+        display: block;
+      }
+
+      .section-head p,
+      .row p {
+        margin-top: 10px;
+      }
+
+      .row time {
+        display: block;
+        margin-bottom: 8px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="shell nav" aria-label="Primary navigation">
+      <a class="brand" href="#top" aria-label="Wei home">
+        <span class="mark">W</span>
+        <span>Wei / Software Engineer</span>
+      </a>
+      <div class="nav-links">
+        <a href="#skills">技能</a>
+        <a href="#work">經驗</a>
+        <a href="#contact">聯絡</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="top" class="shell">
+    <section class="hero" aria-label="Intro">
+      <div>
+        <p class="eyebrow">Software Engineer</p>
+        <h1>打造穩定、清楚、可維護的產品系統。</h1>
+        <p class="lead">
+          我專注於全端開發、API 整合與產品工程，把複雜需求整理成可靠的軟體流程，
+          讓團隊可以更快交付、更安心維護。
+        </p>
+        <div class="actions">
+          <a class="button primary" href="#contact">開始合作</a>
+          <a class="button" href="https://github.com/weiz30">GitHub</a>
+        </div>
+      </div>
+
+      <aside class="profile-panel" aria-label="Engineer profile">
+        <div class="terminal-top">
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+        </div>
+        <div class="terminal">
+          <p><span class="prompt">$</span> whoami</p>
+          <p>Wei, software engineer</p>
+          <p class="comment">// Focus</p>
+          <p>frontend architecture</p>
+          <p>backend APIs</p>
+          <p>automation workflows</p>
+          <p class="comment">// Principles</p>
+          <p>clarity over cleverness</p>
+          <p>small releases</p>
+          <p>observable systems</p>
+        </div>
+      </aside>
+    </section>
+
+    <section id="skills" class="section">
+      <div class="section-head">
+        <h2>核心能力</h2>
+        <p>從需求拆解到上線維運，重視可讀性、測試、效能與長期維護成本。</p>
+      </div>
+      <div class="grid">
+        <article class="card">
+          <h3>Frontend Engineering</h3>
+          <p>建立反應快速、結構清楚的介面，兼顧設計一致性與產品使用情境。</p>
+          <div class="stack">
+            <span class="tag">HTML</span>
+            <span class="tag">CSS</span>
+            <span class="tag">JavaScript</span>
+          </div>
+        </article>
+        <article class="card">
+          <h3>Backend & APIs</h3>
+          <p>設計清楚的資料流程、API 邊界與整合邏輯，讓系統更容易擴充。</p>
+          <div class="stack">
+            <span class="tag">REST</span>
+            <span class="tag">Node.js</span>
+            <span class="tag">Python</span>
+          </div>
+        </article>
+        <article class="card">
+          <h3>Delivery & Automation</h3>
+          <p>用自動化降低重複成本，讓部署、檢查與日常維運更穩定。</p>
+          <div class="stack">
+            <span class="tag">GitHub</span>
+            <span class="tag">CI/CD</span>
+            <span class="tag">Tooling</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="work" class="section">
+      <div class="section-head">
+        <h2>工作方式</h2>
+        <p>偏好先釐清問題，再用簡潔的工程方案落地，留下團隊可以接手的成果。</p>
+      </div>
+      <div class="timeline">
+        <article class="row">
+          <time>01 / Discover</time>
+          <div>
+            <h3>釐清目標與限制</h3>
+            <p>確認使用者、商業需求、技術限制與成功標準，避免過早投入錯方向。</p>
+          </div>
+        </article>
+        <article class="row">
+          <time>02 / Build</time>
+          <div>
+            <h3>小步交付可驗證版本</h3>
+            <p>把功能拆成可測試的單元，快速產出可操作的版本並持續修正。</p>
+          </div>
+        </article>
+        <article class="row">
+          <time>03 / Maintain</time>
+          <div>
+            <h3>讓系統容易維護</h3>
+            <p>保留清楚命名、簡潔文件與必要測試，讓未來修改不用重新猜測。</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="contact" class="section">
+      <div class="contact">
+        <div>
+          <h2>一起打造下一個可靠產品。</h2>
+          <p>歡迎透過 GitHub 聯絡我，或把這個頁面作為個人網站的起點繼續擴充。</p>
+        </div>
+        <a class="button" href="https://github.com/weiz30">查看 GitHub</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="shell">
+    <span>© 2026 Wei. Built for clarity, reliability, and thoughtful engineering.</span>
+  </footer>
+</body>
+</html>
